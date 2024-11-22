@@ -28,6 +28,9 @@ export const createGameboard = (rows, cols) => {
   const receiveAttack = (row, col) => {
     if (board[row][col] != 0) {
       board[row][col].hit();
+    } else {
+      // missed attack
+      board[row][col] = "X";
     }
   };
   const allSunk = () => {};
