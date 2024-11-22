@@ -1,3 +1,4 @@
+import { experiments } from "webpack";
 import { createGameboard } from "../src/factories/Gameboard";
 import { createShip } from "../src/factories/Ship";
 
@@ -27,5 +28,14 @@ describe("createShip", () => {
     board.receiveAttack(0, 0);
     const placedShip = boardState[0][0]; // Get reference to the placed ship
     expect(placedShip.getNumberOfHits()).toBe(1);
+  });
+  test("recieve attack missed ship", () => {
+    const board = createGameboard(2, 2);
+    board.receiveAttack(0, 0);
+    const boardState = board.getBoard();
+    expect(boardState).toEqual([
+      ["X", 0],
+      [0, 0],
+    ]);
   });
 });
