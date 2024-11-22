@@ -38,4 +38,15 @@ describe("createShip", () => {
       [0, 0],
     ]);
   });
+  test("all ships destroyed", () => {
+    const board = createGameboard(2, 2);
+    board.placeShip(0, 0, 0, 0);
+    board.receiveAttack(0, 0);
+    const boardState = board.getBoard();
+    expect(boardState).toEqual([
+      ["s", 0],
+      [0, 0],
+    ]);
+    expect(board.allSunk()).toBe(true);
+  });
 });
