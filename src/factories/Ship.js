@@ -11,7 +11,13 @@ export const createShip = (shipLength) => {
   const hit = () => {
     numberOfHits += 1;
   };
-  const isSunk = () => {};
+  const isSunk = () => {
+    if (numberOfHits >= shipLength) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   return { getLength, getNumberOfHits, getShipStatus, hit, isSunk };
 };
