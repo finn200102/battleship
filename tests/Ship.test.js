@@ -14,4 +14,12 @@ describe("createShip", () => {
     ship.hit();
     expect(ship.getNumberOfHits()).toBe(1);
   });
+  test("isSunk", () => {
+    const ship = createShip(3);
+    ship.hit();
+    ship.hit();
+    expect(ship.isSunk()).toBe(false);
+    ship.hit();
+    expect(ship.isSunk()).toBe(true);
+  });
 });
