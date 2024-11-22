@@ -25,7 +25,11 @@ export const createGameboard = (rows, cols) => {
       }
     }
   };
-  const receiveAttack = () => {};
+  const receiveAttack = (row, col) => {
+    if (board[row][col] != 0) {
+      board[row][col].hit();
+    }
+  };
   const allSunk = () => {};
   return {
     placeShip,
