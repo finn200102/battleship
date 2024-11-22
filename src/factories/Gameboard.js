@@ -28,12 +28,25 @@ export const createGameboard = (rows, cols) => {
   const receiveAttack = (row, col) => {
     if (board[row][col] != 0) {
       board[row][col].hit();
+      if (board[row][col].isSunk()) {
+        board[row][col] = "s";
+      }
     } else {
       // missed attack
       board[row][col] = "X";
     }
   };
-  const allSunk = () => {};
+  const allSunk = () => {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[0].length; i++) {
+        if (board[i][j] != 0 || board[i][j] != "X" || board[i][j] != "s") {
+        } else {
+          return false;
+        }
+        return true;
+      }
+    }
+  };
   return {
     placeShip,
     getBoard,
