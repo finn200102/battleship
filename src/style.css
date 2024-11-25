@@ -1,0 +1,10 @@
+.gameboard-field {
+  background-color: blue;
+  aspect-ratio: 1; /* Makes items square */
+}
+
+.gameboard-container {
+  display: grid;
+  gap: 5px;
+  border: 2px solid black;
+}
