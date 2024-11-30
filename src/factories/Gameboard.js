@@ -7,6 +7,13 @@ export const createGameboard = (rows, cols) => {
   const getBoard = () => {
     return board;
   };
+  const idxToRowCols = (idx) => {
+    const row = Math.floor(idx / board[0].length);
+
+    const col = idx % board.length;
+
+    return [row, col];
+  };
   const selectField = (row, col) => {
     selectedCol = col;
     selectedRow = row;
@@ -85,5 +92,6 @@ export const createGameboard = (rows, cols) => {
     isValidMove,
     selectField,
     selectedField,
+    idxToRowCols,
   };
 };

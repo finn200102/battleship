@@ -5,22 +5,28 @@
 }
 
 #player-holder {
-  width: 40%;
+  width: 45%;
   text-align: center;
 }
 
 #computer-holder {
-  width: 40%;
+  width: 45%;
   text-align: center;
 }
 
 .gameboard-field {
-  background-color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 1px solid black;
+  text-align: center;
+
+  padding: 2px;
   aspect-ratio: 1; /* Makes items square */
 }
 
 .gameboard-container {
   display: grid;
-  gap: 5px;
   border: 2px solid black;
 }

@@ -72,7 +72,21 @@ export const displayGameboard = (() => {
       console.log("not implemented type");
     }
   };
+  const setUpPlayerBoard = (player) => {
+    return new Promise((resolve) => {
+      // const computerBoard = document.getElementById("computer-board");
+      const cboard = document.getElementById("player-board");
+      const computerfields = cboard.querySelectorAll(".gameboard-field");
+      for (let i = 0; i < computerfields.length; i++) {
+        computerfields[i].addEventListener("click", () => {
+          computerfields[i].textContent = "ship";
+          resolve(player.gameboard.idxToRowCols(i));
+        });
+      }
+    });
+  };
   return {
     render,
+    setUpPlayerBoard,
   };
 })();
