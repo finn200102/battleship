@@ -7,7 +7,11 @@
   </head>
   <body>
     <header><h2>Battleship Game</h2></header>
-    <button id="start-button">Start</button>
+    <div>
+      <button id="start-button">Start</button>
+      <label for="number-ships">Number of ships:</label>
+      <input type="number" id="number-ships" min="1" max="5" />
+    </div>
     <div id="game-status"></div>
     <div id="content">
       <div id="player-holder">

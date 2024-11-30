@@ -99,10 +99,14 @@ export const displayGameboard = (() => {
     const status = document.getElementById("game-status");
     status.textContent = statusText;
   };
+  const getNumberOfShips = () => {
+    return Number(document.getElementById("number-ships").value);
+  };
   return {
     render,
     setUpPlayerBoard,
     setGameStatus,
     setTempShip,
+    getNumberOfShips,
   };
 })();

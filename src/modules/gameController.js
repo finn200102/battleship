@@ -4,14 +4,18 @@ export const gameController = (() => {
   let player;
   let computer;
   const setUpGame = async () => {
+    const numberOfShips = displayGameboard.getNumberOfShips();
+
     player = createPlayer(10, 10);
     computer = createPlayer(10, 10);
     displayGameboard.render(player.gameboard, "player");
     displayGameboard.render(computer.gameboard, "computer");
     // let player place ships
-    for (let s = 0; s < 2; s++) {
+    for (let s = 0; s < numberOfShips; s++) {
       const coordinates = [];
-      displayGameboard.setGameStatus(`Place ship number ${s + 1}`);
+      displayGameboard.setGameStatus(
+        `Place ship number ${s + 1} of ${numberOfShips}`
+      );
       for (let i = 0; i < 3; i++) {
         displayGameboard.setGameStatus(
           `Place ship number ${s + 1}s module ${i + 1} of ${3} `
@@ -21,8 +25,10 @@ export const gameController = (() => {
         // check ship is one ship
         if (
           i > 0 &&
-          (Math.abs(coordinates[i - 1][0] - coordinate[0]) > 1 ||
-            Math.abs(coordinates[i - 1][1] - coordinate[1]) > 1)
+          ((Math.abs(coordinates[i - 1][0] - coordinate[0]) > 1 &&
+            Math.abs(coordinates[i - 1][1] - coordinate[1]) != 0) ||
+            (Math.abs(coordinates[i - 1][0] - coordinate[0]) != 0 &&
+              Math.abs(coordinates[i - 1][1] - coordinate[1]) > 0))
         ) {
           console.log("wrong");
 
