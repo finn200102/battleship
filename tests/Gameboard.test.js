@@ -26,7 +26,7 @@ describe("createShip", () => {
     board.placeShip(0, 0, 0, 1);
     const boardState = board.getBoard();
     board.receiveAttack(0, 0);
-    const placedShip = boardState[0][0]; // Get reference to the placed ship
+    const placedShip = boardState[0][0][0]; // Get reference to the placed ship
     expect(placedShip.getNumberOfHits()).toBe(1);
   });
   test("recieve attack missed ship", () => {
@@ -61,6 +61,6 @@ describe("createShip", () => {
     board.placeShip(0, 0, 0, 0);
     board.selectField(0, 0);
     const selected = board.selectedField();
-    expect(selected).toBe(0, 0);
+    expect(selected).toStrictEqual([0, 0]);
   });
 });

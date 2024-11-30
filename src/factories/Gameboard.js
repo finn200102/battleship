@@ -38,7 +38,6 @@ export const createGameboard = (rows, cols) => {
     if (board[row][col] != 0) {
       board[row][col][0].hit();
       board[row][col].push("X");
-      console.log(board[row][col]);
     } else {
       // missed attack
       board[row][col] = "X";
@@ -70,14 +69,13 @@ export const createGameboard = (rows, cols) => {
   };
   const allSunk = () => {
     for (let i = 0; i < board.length; i++) {
-      for (let j = 0; j < board[0].length; i++) {
-        if (board[i][j] != 0 || board[i][j] != "X" || board[i][j] != "s") {
-        } else {
+      for (let j = 0; j < board[0].length; j++) {
+        if (Array.isArray(board[i][j])) {
           return false;
         }
-        return true;
       }
     }
+    return true;
   };
   return {
     placeShip,
