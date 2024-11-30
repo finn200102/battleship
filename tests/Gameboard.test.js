@@ -49,4 +49,11 @@ describe("createShip", () => {
     ]);
     expect(board.allSunk()).toBe(true);
   });
+  test("is Valid Move", () => {
+    const board = createGameboard(2, 2);
+    board.placeShip(0, 0, 0, 0);
+    board.receiveAttack(1, 1);
+    const valid = board.isValidMove(0, 0);
+    expect(valid).toBe(true);
+  });
 });
