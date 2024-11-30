@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game</title>
+  <script defer src="./main.js"></script></head>
+  <body>
+    <header><h2>Battleship Game</h2></header>
+    <div>
+      <button id="start-button">Start</button>
+      <label for="number-ships">Number of ships:</label>
+      <input type="number" id="number-ships" min="1" max="5" />
+    </div>
+    <div id="game-status"></div>
+    <div id="content">
+      <div id="player-holder">
+        <h2 id="player-header">Player:</h2>
+        <div id="player-board"></div>
+      </div>
+      <div id="computer-holder">
+        <h2 id="computer-header">Computer:</h2>
+        <div id="computer-board"></div>
+      </div>
+    </div>
+  </body>
+</html>
