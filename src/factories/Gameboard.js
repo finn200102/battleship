@@ -12,7 +12,7 @@ export const createGameboard = (rows, cols) => {
     selectedRow = row;
   };
   const selectedField = () => {
-    return selectedRow, selectedCol;
+    return [selectedRow, selectedCol];
   };
   const placeShip = (startRow, startCol, endRow, endCol) => {
     const length =
@@ -23,33 +23,49 @@ export const createGameboard = (rows, cols) => {
       const minCol = Math.min(startCol, endCol);
       const maxCol = Math.max(startCol, endCol);
       for (let col = minCol; col <= maxCol; col++) {
-        board[startRow][col] = ship;
+        board[startRow][col] = [ship];
       }
     } else if (startCol == endCol) {
       // Vertical placement
       const minRow = Math.min(startRow, endRow);
       const maxRow = Math.max(startRow, endRow);
       for (let row = minRow; row <= maxRow; row++) {
-        board[row][startCol] = ship;
+        board[row][startCol] = [ship];
       }
     }
   };
   const receiveAttack = (row, col) => {
     if (board[row][col] != 0) {
-      board[row][col].hit();
-      if (board[row][col].isSunk()) {
-        board[row][col] = "s";
-      }
+      board[row][col][0].hit();
+      board[row][col].push("X");
+      console.log(board[row][col]);
     } else {
       // missed attack
       board[row][col] = "X";
     }
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[0].length; j++) {
+        if (Array.isArray(board[i][j])) {
+          if (board[i][j][0].isSunk()) {
+            board[i][j] = "s";
+          }
+        }
+      }
+    }
   };
   const isValidMove = (row, col) => {
-    if (board[row][col] == "X" || board[row][col] == "s") {
-      return false;
+    if (Array.isArray(board[row][col])) {
+      if (board[row][col][1]) {
+        return false;
+      } else {
+        return true;
+      }
     } else {
-      return true;
+      if (board[row][col] == "X" || board[row][col] == "s") {
+        return false;
+      } else {
+        return true;
+      }
     }
   };
   const allSunk = () => {

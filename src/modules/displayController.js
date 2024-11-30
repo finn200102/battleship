@@ -1,5 +1,6 @@
 export const displayGameboard = (() => {
   const render = (gb, type) => {
+    clear(type);
     const gameboard = gb.getBoard();
     const boardContainer = document.createElement("div");
     // choose the rigth id
@@ -23,9 +24,19 @@ export const displayGameboard = (() => {
         gb.selectField(row, col);
       });
       // field content
-      if (gameboard.flat()[i].isShip && type == "player") {
-        gameBoardField.textContent = "ship";
+      if (Array.isArray(gameboard.flat()[i])) {
+        if (gameboard.flat()[i][0].isShip && gameboard.flat()[i][1] == "X") {
+          gameBoardField.textContent = "xXx";
+        }
+        if (
+          gameboard.flat()[i][0].isShip &&
+          type == "player" &&
+          !gameboard.flat()[i][1]
+        ) {
+          gameBoardField.textContent = "ship";
+        }
       }
+
       if (gameboard.flat()[i] == "X") {
         gameBoardField.textContent = "X";
       }
@@ -42,6 +53,21 @@ export const displayGameboard = (() => {
     } else if (type == "computer") {
       const computerBoard = document.getElementById("computer-board");
       computerBoard.appendChild(boardContainer);
+    } else {
+      console.log("not implemented type");
+    }
+  };
+  const clear = (type) => {
+    if (type == "player") {
+      const playerBoard = document.getElementById("player-board");
+      while (playerBoard.firstChild) {
+        playerBoard.removeChild(playerBoard.firstChild);
+      }
+    } else if (type == "computer") {
+      const computerBoard = document.getElementById("computer-board");
+      while (computerBoard.firstChild) {
+        computerBoard.removeChild(computerBoard.firstChild);
+      }
     } else {
       console.log("not implemented type");
     }
