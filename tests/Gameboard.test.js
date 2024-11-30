@@ -56,4 +56,11 @@ describe("createShip", () => {
     const valid = board.isValidMove(0, 0);
     expect(valid).toBe(true);
   });
+  test("selectField, selectedFiled", () => {
+    const board = createGameboard(2, 2);
+    board.placeShip(0, 0, 0, 0);
+    board.selectField(0, 0);
+    const selected = board.selectedField();
+    expect(selected).toBe(0, 0);
+  });
 });
