@@ -9,10 +9,15 @@ export const gameController = (() => {
     displayGameboard.render(player.gameboard, "player");
     displayGameboard.render(computer.gameboard, "computer");
     // let player place ships
-    for (let s = 0; s < 1; s++) {
+    for (let s = 0; s < 2; s++) {
       const coordinates = [];
+      displayGameboard.setGameStatus(`Place ship number ${s + 1}`);
       for (let i = 0; i < 3; i++) {
+        displayGameboard.setGameStatus(
+          `Place ship number ${s + 1}s module ${i + 1} of ${3} `
+        );
         const coordinate = await displayGameboard.setUpPlayerBoard(player);
+
         // check ship is one ship
         if (
           i > 0 &&
@@ -20,9 +25,11 @@ export const gameController = (() => {
             Math.abs(coordinates[i - 1][1] - coordinate[1]) > 1)
         ) {
           console.log("wrong");
+
           i -= 1;
           continue;
         }
+        displayGameboard.setTempShip(coordinate[0], coordinate[1], player);
 
         coordinates.push(coordinate);
       }
@@ -49,15 +56,20 @@ export const gameController = (() => {
 
     // game loop
     for (let i = 0; i < 110; i++) {
+      displayGameboard.setGameStatus(
+        `All ships are set start attacking the enemy we are at round ${i + 1}`
+      );
       displayGameboard.render(player.gameboard, "player");
       displayGameboard.render(computer.gameboard, "computer");
       // check win conditions
       if (player.gameboard.allSunk()) {
         console.log("computer has won");
+        displayGameboard.setGameStatus(`You have lost at round ${i}`);
         break;
       }
 
       if (computer.gameboard.allSunk()) {
+        displayGameboard.setGameStatus(`You have won at round ${i}`);
         console.log("player has won");
         break;
       }

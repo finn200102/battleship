@@ -79,14 +79,30 @@ export const displayGameboard = (() => {
       const computerfields = cboard.querySelectorAll(".gameboard-field");
       for (let i = 0; i < computerfields.length; i++) {
         computerfields[i].addEventListener("click", () => {
-          computerfields[i].textContent = "ship";
           resolve(player.gameboard.idxToRowCols(i));
         });
       }
     });
   };
+  const setTempShip = (row, col, player) => {
+    const cboard = document.getElementById("player-board");
+    const computerfields = cboard.querySelectorAll(".gameboard-field");
+    const idx = player.gameboard.rowColsToIdx(row, col);
+
+    for (let i = 0; i < computerfields.length; i++) {
+      if (idx == i) {
+        computerfields[i].textContent = "ship";
+      }
+    }
+  };
+  const setGameStatus = (statusText) => {
+    const status = document.getElementById("game-status");
+    status.textContent = statusText;
+  };
   return {
     render,
     setUpPlayerBoard,
+    setGameStatus,
+    setTempShip,
   };
 })();

@@ -14,6 +14,9 @@ export const createGameboard = (rows, cols) => {
 
     return [row, col];
   };
+  const rowColsToIdx = (row, col) => {
+    return row * board[0].length + col;
+  };
   const selectField = (row, col) => {
     selectedCol = col;
     selectedRow = row;
@@ -93,5 +96,6 @@ export const createGameboard = (rows, cols) => {
     selectField,
     selectedField,
     idxToRowCols,
+    rowColsToIdx,
   };
 };
