@@ -36,6 +36,13 @@ export const createGameboard = (rows, cols) => {
       board[row][col] = "X";
     }
   };
+  const isValidMove = (row, col) => {
+    if (board[row][col] == "X" || board[row][col] == "s") {
+      return false;
+    } else {
+      return true;
+    }
+  };
   const allSunk = () => {
     for (let i = 0; i < board.length; i++) {
       for (let j = 0; j < board[0].length; i++) {
@@ -52,5 +59,6 @@ export const createGameboard = (rows, cols) => {
     getBoard,
     receiveAttack,
     allSunk,
+    isValidMove,
   };
 };
