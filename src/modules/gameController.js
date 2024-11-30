@@ -16,6 +16,16 @@ export const gameController = (() => {
     for (let i = 0; i < 10; i++) {
       displayGameboard.render(player.gameboard, "player");
       displayGameboard.render(computer.gameboard, "computer");
+      // check win condition
+      if (player.gameboard.allSunk()) {
+        console.log("computer has won");
+        break;
+      }
+
+      if (computer.gameboard.allSunk()) {
+        console.log("player has won");
+        break;
+      }
       // player move
       while (validMove) {
         const playerMoved = await waitForPlayerMove();
