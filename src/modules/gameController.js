@@ -12,6 +12,7 @@ export const gameController = (() => {
   const gameLoop = () => {
     setUpGame();
     displayGameboard.render(player.gameboard.getBoard(), "player");
+    displayGameboard.render(computer.gameboard.getBoard(), "computer");
   };
   return {
     gameLoop,

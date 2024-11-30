@@ -1,3 +1,19 @@
+#content {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+#player-holder {
+  width: 40%;
+  text-align: center;
+}
+
+#computer-holder {
+  width: 40%;
+  text-align: center;
+}
+
 .gameboard-field {
   background-color: blue;
   aspect-ratio: 1; /* Makes items square */
