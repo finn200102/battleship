@@ -2,8 +2,17 @@ import { createShip } from "./Ship";
 
 export const createGameboard = (rows, cols) => {
   let board = Array.from({ length: rows }, () => new Array(cols).fill(0));
+  let selectedRow = 0;
+  let selectedCol = 0;
   const getBoard = () => {
     return board;
+  };
+  const selectField = (row, col) => {
+    selectedCol = col;
+    selectedRow = row;
+  };
+  const selectedField = () => {
+    return selectedRow, selectedCol;
   };
   const placeShip = (startRow, startCol, endRow, endCol) => {
     const length =
@@ -60,5 +69,7 @@ export const createGameboard = (rows, cols) => {
     receiveAttack,
     allSunk,
     isValidMove,
+    selectField,
+    selectedField,
   };
 };
